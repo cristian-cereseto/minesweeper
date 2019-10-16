@@ -1,5 +1,5 @@
 import { RESET_BOARD, OPEN_CELL, TOGGLE_CELL_FLAG } from '../actions/BoardActionTypes';
-import { getRowCells, mineLocationsFor } from '../../helpers/boardHelpers';
+import {getAdjacentCells, getRowCells, mineLocationsFor} from '../../helpers/boardHelpers';
 import { cloneDeep as _cloneDeep } from 'lodash';
 
 const initialState = {
@@ -46,12 +46,14 @@ const minesweeperReducer = (state = initialState, action = { type: '' }) => {
         }
         case OPEN_CELL: {
             const { x, y } = action.payload;
+            const { height, width } = state;
+
             const clonedState = _cloneDeep(state);
             const board = clonedState.board;
             const cell = board[x][y];
             cell.isOpen = true;
             cell.hasFlag = false;
-
+            cell.count = getAdjacentCells({ x, y }, height, width, board).length;
             return clonedState;
         }
         case TOGGLE_CELL_FLAG: {
@@ -61,6 +63,7 @@ const minesweeperReducer = (state = initialState, action = { type: '' }) => {
             const cell = board[x][y];
             cell.hasFlag = true;
             cell.isOpen = true;
+            clonedState.minesUncovered = state.minesUncovered + 1;
 
             return clonedState;
         }
