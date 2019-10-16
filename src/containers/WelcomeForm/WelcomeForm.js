@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { resetBoard } from '../../redux/actions/BoardActions';
 import './WelcomeForm.scss';
@@ -49,7 +50,8 @@ class WelcomeForm extends Component {
             height,
             width,
             minesAmount
-        })
+        });
+        this.props.history.push('/board');
     }
 
     isDisabled() {
@@ -59,5 +61,5 @@ class WelcomeForm extends Component {
     }
 }
 
-export default connect(null, { resetBoard })(WelcomeForm)
+export default withRouter(connect(null, { resetBoard })(WelcomeForm))
 

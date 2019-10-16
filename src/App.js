@@ -1,9 +1,15 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import store from '../src/redux/store';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from 'react-router-dom';
 import logo from './logo.svg';
 import './App.scss';
 import WelcomeForm from './containers/WelcomeForm/WelcomeForm';
+import Board from './containers/Board/Board';
 
 const App = () => {
   return (
@@ -15,9 +21,16 @@ const App = () => {
               <code>MINE SWEEPER</code>
             </p>
           </header>
-          <div>
-            <WelcomeForm />
-          </div>
+          <Router>
+            <Switch>
+              <Route exact path="/">
+                <WelcomeForm />
+              </Route>
+              <Route exact path="/board">
+                <Board />
+              </Route>
+            </Switch>
+          </Router>
         </div>
       </Provider>
   );
