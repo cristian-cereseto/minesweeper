@@ -1,0 +1,31 @@
+.welcome-form {
+  align-items: center;
+  background-color: #282c34;
+  color: white;
+  display: flex;
+  font-size: calc(10px + 2vmin);
+  justify-content: space-between;
+  margin: 0 20%;
+
+  & input {
+    margin: 0 15px;
+  }
+
+  &__button {
+    background: none;
+    border: none;
+    color: #09d3ac;
+    cursor: pointer;
+    font-size: calc(10px + 2vmin);
+    margin-top: 15px;
+    &:disabled {
+      color: #4f4f4f;
+    }
+
+    &:hover {
+      text-decoration: underline;
+
+      &:disabled { text-decoration: none; }
+    }
+  }
+}

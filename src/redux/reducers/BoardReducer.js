@@ -34,7 +34,7 @@ const minesweeperReducer = (state = initialState, action = { type: '' }) => {
             const board = [];
             let row;
 
-            for (let i = 0; i <= height; i++) {
+            for (let i = 0; i < height; i++) {
                 row = getRowCells(width);
                 board.push(row);
             }
@@ -55,7 +55,7 @@ const minesweeperReducer = (state = initialState, action = { type: '' }) => {
 const getRowCells = (width) => {
     const rowCells = [];
     let cell;
-    for (let index = 0; index <= width; index ++) {
+    for (let index = 0; index < width; index ++) {
         cell = _cloneDeep(defaultCell);
         cell.y = index;
 

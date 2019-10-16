@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import store from '../src/redux/store';
 import logo from './logo.svg';
 import './App.scss';
+import WelcomeForm from './containers/WelcomeForm/WelcomeForm';
 
 const App = () => {
   return (
@@ -13,22 +14,10 @@ const App = () => {
             <p>
               <code>MINE SWEEPER</code>
             </p>
-            <div className="App__welcome-form">
-              <label htmlFor="width">Width</label>
-              <input type="number" id="width"/>
-              <label htmlFor="height">Height</label>
-              <input type="number" id="height"/>
-              <label htmlFor="mines">Mines Amount</label>
-              <input type="number" id="mines"/>
-            </div>
-            <a
-                className="App__link"
-                href="#"
-                rel="noopener noreferrer"
-            >
-              Start
-            </a>
           </header>
+          <div>
+            <WelcomeForm />
+          </div>
         </div>
       </Provider>
   );
