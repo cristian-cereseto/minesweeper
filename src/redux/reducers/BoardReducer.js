@@ -1,5 +1,6 @@
 import { RESET_BOARD, OPEN_CELL, TOGGLE_CELL_FLAG } from '../actions/BoardActionTypes';
 import { getRowCells, mineLocationsFor } from '../../helpers/boardHelpers';
+import { cloneDeep as _cloneDeep } from 'lodash';
 
 const initialState = {
     height: 0,
@@ -44,10 +45,24 @@ const minesweeperReducer = (state = initialState, action = { type: '' }) => {
             return clonedState;
         }
         case OPEN_CELL: {
-            return state;
+            const { x, y } = action.payload;
+            const clonedState = _cloneDeep(state);
+            const board = clonedState.board;
+            const cell = board[x][y];
+            cell.isOpen = true;
+            cell.hasFlag = false;
+
+            return clonedState;
         }
         case TOGGLE_CELL_FLAG: {
-            return state;
+            const { x, y } = action.payload;
+            const clonedState = _cloneDeep(state);
+            const board = clonedState.board;
+            const cell = board[x][y];
+            cell.hasFlag = true;
+            cell.isOpen = true;
+
+            return clonedState;
         }
         default:
             return state;

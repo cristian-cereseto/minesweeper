@@ -1,19 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import Row from '../../components/Row/Row';
 
 import './Board.scss';
+import {Link} from "react-router-dom";
 
 class Board extends Component {
     constructor(props) {
         super(props);
+        this.handleNewGameClick = this.handleNewGameClick.bind(this);
     }
 
     render() {
         return (
             <div className="board">
+                <span className="board__header">
+                    MINES REMAINING:
+                    <span className="board__header-amount"> {this.props.minesAmount - this.props.minesUncovered}</span>
+                </span>
                 {this.renderRows()}
+                <Link to="/">
+                    <button className="board__button">NEW GAME</button>
+                </Link>
             </div>
         )
     }
@@ -24,6 +32,8 @@ class Board extends Component {
         }
         return null;
     }
+
+    handleNewGameClick() {}
 }
 
 const mapStateToProps = (state) => {

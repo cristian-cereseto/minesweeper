@@ -7,4 +7,20 @@ export const resetBoard = boardFeatures => ({
         height: boardFeatures.height,
         minesAmount: boardFeatures.minesAmount,
     }
-})
+});
+
+export const openCell = coordinates => ({
+    type: OPEN_CELL,
+    payload: {
+        x: coordinates.x,
+        y: coordinates.y,
+    }
+});
+
+export const flagCell = coordinates => ({
+    type: TOGGLE_CELL_FLAG,
+    payload: {
+        x: coordinates.x,
+        y: coordinates.y,
+    }
+});
