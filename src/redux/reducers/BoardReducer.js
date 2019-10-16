@@ -51,9 +51,12 @@ const minesweeperReducer = (state = initialState, action = { type: '' }) => {
             const clonedState = _cloneDeep(state);
             const board = clonedState.board;
             const cell = board[x][y];
+            const adjacentCells = getAdjacentCells({ x, y }, height, width, board);
+            const adjacentCellsWithMines = adjacentCells.filter(cell => cell.hasMine);
             cell.isOpen = true;
             cell.hasFlag = false;
-            cell.count = getAdjacentCells({ x, y }, height, width, board).length;
+            cell.count = adjacentCellsWithMines.length;
+
             return clonedState;
         }
         case TOGGLE_CELL_FLAG: {

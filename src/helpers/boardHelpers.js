@@ -43,18 +43,18 @@ export const getAdjacentCells = (coordinates, height, width, board) => {
     const { x, y } = coordinates;
     const adjacentBoundaries = {
         minX: (x > 0) ? x - 1 : 0,
-        maxX: (x < width - 1) ? x + 1 : width - 1,
+        maxX: (x < height - 1) ? x + 1 : height - 1,
         minY: (y > 0) ? y - 1 : 0,
-        maxY: (y < height - 1) ? y + 1 : height - 1,
+        maxY: (y < width - 1) ? y + 1 : width - 1,
     };
 
     const adjacentCells = [];
     let rowToCheckForMines;
     let adjacentCell;
-    for (let indexY = adjacentBoundaries.minY; indexY <= adjacentBoundaries.maxY; indexY ++) {
-        rowToCheckForMines = board[indexY];
-        for (let indexX = adjacentBoundaries.minX; indexX <= adjacentBoundaries.maxX; indexX ++) {
-            adjacentCell = rowToCheckForMines[indexX];
+    for (let indexX = adjacentBoundaries.minX; indexX <= adjacentBoundaries.maxX; indexX ++) {
+        rowToCheckForMines = board[indexX];
+        for (let indexY = adjacentBoundaries.minY; indexY <= adjacentBoundaries.maxY; indexY ++) {
+            adjacentCell = rowToCheckForMines[indexY];
             if (adjacentCell.x !== x || adjacentCell.y !== y) {
                 adjacentCells.push(adjacentCell);
             }
