@@ -13,8 +13,8 @@ const randomLocations = ({ width, height, mines }) => {
     const locations = [];
 
     while (locations.length < mines) {
-        const x = Math.floor(Math.random() * width);
-        const y = Math.floor(Math.random() * height);
+        const x = Math.floor(Math.random() * width) || 0;
+        const y = Math.floor(Math.random() * height) || 0;
         const coordinate = { x, y };
         if (!locations.includes(coordinate)) {
             locations.push(coordinate);
@@ -25,13 +25,14 @@ const randomLocations = ({ width, height, mines }) => {
 
 export const mineLocationsFor = (width, height, mines) => randomLocations({ width, height, mines });
 
-export const getRowCells = (rowIndex, width) => {
+export const getRowCells = (rowIndex, height, width, mines) => {
     const rowCells = [];
     let cell;
     for (let index = 0; index < width; index ++) {
         cell = _cloneDeep(defaultCell);
         cell.x = rowIndex;
         cell.y = index;
+        cell.count = 0;
 
         rowCells.push(cell);
     }
@@ -62,4 +63,50 @@ export const getAdjacentCells = (coordinates, height, width, board) => {
     }
 
     return adjacentCells;
+}
+
+const getNearbyCount = (mines, x, y, height, width) => {
+    const adjacentCoordsLimits = {
+        minX: x - 1,
+        maxX: x + 1,
+        minY:  y - 1,
+        maxY: y + 1,
+    };
+    let count = 0;
+    let mX;
+    let mY;
+    const adjacentCoords = [];
+    for (let xIndex = adjacentCoordsLimits.minX; xIndex <= adjacentCoordsLimits.maxX; xIndex ++) {
+        for (let yIndex = adjacentCoordsLimits.minY; yIndex <= adjacentCoordsLimits.maxY; yIndex ++) {
+            adjacentCoords.push({x: xIndex, y: yIndex});
+        }
+    }
+
+    mines.forEach(mineCoords => {
+        mX = mineCoords.x;
+        mY = mineCoords.y;
+
+        if (mX === x && mY === y) {
+            return;
+        }
+
+        console.log('foreach', adjacentCoords, width, height, adjacentCoords.find(coords => {
+            return (
+                !(coords.x > width || coords.y > height) &&
+                !(coords.x !== -1 || coords.y !== -1) &&
+                coords.x === mineCoords.x && coords.y === mineCoords.y
+            )}));
+
+        if (adjacentCoords.find(coords => {
+            return (
+                !(coords.x > width || coords.y > height) &&
+                !(coords.x !== -1 || coords.y !== -1) &&
+                (coords.x === mineCoords.x || coords.y === mineCoords.y)
+            );
+        })) {
+            count += 1;
+        }
+    });
+
+    return count;
 }

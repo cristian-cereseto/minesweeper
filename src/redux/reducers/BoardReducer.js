@@ -29,7 +29,7 @@ const minesweeperReducer = (state = initialState, action = { type: '' }) => {
             let cell;
 
             for (let index = 0; index < height; index++) {
-                row = getRowCells(index, width);
+                row = getRowCells(index, height, width, mines);
                 board.push(row);
             }
 
@@ -56,6 +56,12 @@ const minesweeperReducer = (state = initialState, action = { type: '' }) => {
             cell.isOpen = true;
             cell.hasFlag = false;
             cell.count = adjacentCellsWithMines.length;
+
+            if (!adjacentCellsWithMines.length) {
+                adjacentCells.map(cell => {
+                    cell.isOpen = true;
+                });
+            }
 
             return clonedState;
         }

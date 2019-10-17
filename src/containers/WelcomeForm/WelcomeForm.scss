@@ -3,12 +3,20 @@
   background-color: #282c34;
   color: white;
   display: flex;
+  flex-wrap: wrap;
   font-size: calc(10px + 2vmin);
   justify-content: space-between;
   margin: 0 20%;
 
   & input {
     margin: 0 15px;
+  }
+
+  &__radio-buttons {
+    display: flex;
+    flex: 0 0 100%;
+    justify-content: center;
+    margin: 30px auto;
   }
 
   &__button {
