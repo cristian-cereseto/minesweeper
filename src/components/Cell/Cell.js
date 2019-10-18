@@ -36,18 +36,21 @@ class Cell extends Component {
     }
 
     handleClick(event) {
-        if (event.type === 'click') {
-            this.props.openCell({x: this.props.x, y: this.props.y});
-        } else {
-            event.preventDefault();
-            this.props.flagCell({x: this.props.x, y: this.props.y});
+        if (!this.props.hasFlag) {
+            if (event.type === 'click') {
+                this.props.openCell({x: this.props.x, y: this.props.y});
+            } else {
+                event.preventDefault();
+                this.props.flagCell({x: this.props.x, y: this.props.y});
+            }
         }
     }
 
     getClassName(){
         return classname({
             cell: true,
-            'cell--opened': this.props.isOpen
+            'cell--opened': this.props.isOpen,
+            'cell--flagged': this.props.hasFlag
         })
     }
 }

@@ -9,6 +9,11 @@
 
   &--opened {
     background-color: #09d3ac;
+    &.cell--flagged:hover {
+      cursor: not-allowed;
+      font-size: calc(10px + 2vmin);
+    }
+
   }
 
   &:hover {
