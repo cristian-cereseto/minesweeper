@@ -26,9 +26,8 @@ class Board extends Component {
                 <Link to="/">
                     <button className="board__button">NEW GAME</button>
                 </Link>
-                <button onClick={this.toggleModal}>OPEN MODAL</button>
-                <Modal show={this.state.modal} onCloseClick={this.toggleModal}>
-                    <span className="board__message">MODAL CONTENT</span>
+                <Modal show={this.props.gameOver} showCloseButton={false}>
+                    {this.renderModalContent()}
                 </Modal>
             </div>
         )
@@ -41,6 +40,28 @@ class Board extends Component {
         return null;
     }
 
+    renderModalContent() {
+        if (this.props.winGame) {
+            return (
+                <div>
+                    <div className="board__message">YOU WIN!</div>
+                    <Link to="/">
+                        <button className="board__button">NEW GAME</button>
+                    </Link>
+                </div>
+            )
+        } else {
+            return (
+                <div>
+                    <div className="board__message">GAME OVER</div>
+                    <Link to="/">
+                        <button className="board__button">NEW GAME</button>
+                    </Link>
+                </div>
+            )
+        }
+    }
+
     toggleModal() {
         this.setState(state => ({
             ...state,
@@ -50,13 +71,15 @@ class Board extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { width, height, minesAmount, minesUncovered, board } = state.minesweeperReducer;
+    const { width, height, minesAmount, minesUncovered, board, gameOver, winGame } = state.minesweeperReducer;
     return {
         width,
         height,
         minesAmount,
         minesUncovered,
-        board
+        board,
+        gameOver,
+        winGame
     }
 };
 

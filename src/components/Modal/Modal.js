@@ -13,7 +13,11 @@ export default class Modal extends Component {
         return (
             <div className={this.getClassName()}>
                 <div className="modal__content">
-                    <button className="modal__close" onClick={this.handleCloseButtonClick}>X</button>
+                    {
+                        (this.props.showCloseButton) ?
+                            <button className="modal__close" onClick={this.handleCloseButtonClick}>X</button> :
+                            null
+                    }
                     {this.props.children}
                 </div>
             </div>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import classname from 'classname';
 import { openCell, flagCell } from '../../redux/actions/BoardActions';
 
 import './Cell.scss';
@@ -12,7 +13,7 @@ class Cell extends Component {
 
     render() {
         return (
-            <div className="cell" onClick={this.handleClick} onContextMenu={this.handleClick}>
+            <div className={this.getClassName()} onClick={this.handleClick} onContextMenu={this.handleClick}>
                 {this.renderContent()}
             </div>
         )
@@ -24,6 +25,8 @@ class Cell extends Component {
                 return '🚩';
             } else if (this.props.hasMine) {
                 return '💣';
+            } else if (!this.props.count) {
+                return null;
             } else {
                 return this.props.count;
             }
@@ -39,6 +42,13 @@ class Cell extends Component {
             event.preventDefault();
             this.props.flagCell({x: this.props.x, y: this.props.y});
         }
+    }
+
+    getClassName(){
+        return classname({
+            cell: true,
+            'cell--opened': this.props.isOpen
+        })
     }
 }
 

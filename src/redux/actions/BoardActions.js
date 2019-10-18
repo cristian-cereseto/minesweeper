@@ -1,4 +1,4 @@
-import { RESET_BOARD, OPEN_CELL, TOGGLE_CELL_FLAG } from '../actions/BoardActionTypes';
+import {RESET_BOARD, OPEN_CELL, TOGGLE_CELL_FLAG, GAME_OVER} from '../actions/BoardActionTypes';
 
 export const resetBoard = boardFeatures => ({
     type: RESET_BOARD,
@@ -24,3 +24,9 @@ export const flagCell = coordinates => ({
         y: coordinates.y,
     }
 });
+
+export const gameOver = winGame => ({
+    type: GAME_OVER,
+    payload: { winGame }
+});
+

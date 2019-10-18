@@ -7,6 +7,10 @@
   min-width: 75px;
   text-align: center;
 
+  &--opened {
+    background-color: #09d3ac;
+  }
+
   &:hover {
     cursor: pointer;
     font-size: calc(15px + 2vmin);
