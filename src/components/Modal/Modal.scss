@@ -3,14 +3,18 @@
 
   &__content {
     align-items: center;
-    background-color: #282c34;
+    background-color: rgba(40, 44, 52, 0.75);
+    border: 5px solid #fff;
+    border-radius: 15px;
     display: flex;
     justify-content: center;
-    min-height: 100vh;
-    min-width: 100vw;
+    width: 800px;
+    height: 400px;
     position: absolute;
-    right: 0;
-    top: 0;
+    top: 50%;
+    left: 50%;
+
+    margin: -150px 0 0 -400px;
   }
 
   &__close {
