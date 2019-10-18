@@ -1,3 +1,19 @@
+# Cristian Cereseto - React js Mine Sweeper
+This project is a simple mine sweeper game built to demonstrate Front-end habilities and tought process.
+
+## Description:
+Small game where the user selects height, width and amount of mines (or selects between 3 different default difficulty levels) before being sent to a classic mine sweeper game.
+The mines are placed randomly on the board, the user can perform one of two actions, click on a cell to open it or right click on the cell to flagged it as a posible mine.
+Once  the cell is opened if it doesn't contain a mine, it will show the number of mines surrounding it, if no mines are around it, all adjacent cells will be opened. If the cell contains a mine, the game will be inmediately lost.
+Once the game ends a modal will show a message with the game result and the chance to start a new game.
+
+## Technology Stack:
+* React js
+* React router
+* Redux
+* Redux persist
+* Sass based styles (all classes follow B.E.M. conventions)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -29,13 +45,13 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**Note: this is a one-way operation. Once you `eject`, you canâ€™t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+If you arenâ€™t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point youâ€™re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+You donâ€™t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldnâ€™t feel obligated to use this feature. However we understand that this tool wouldnâ€™t be useful if you couldnâ€™t customize it when you are ready for it.
 
 ## Learn More
 
