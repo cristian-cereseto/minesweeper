@@ -4,11 +4,15 @@ import Row from '../../components/Row/Row';
 
 import './Board.scss';
 import {Link} from "react-router-dom";
+import Modal from "../../components/Modal/Modal";
 
 class Board extends Component {
     constructor(props) {
         super(props);
-        this.handleNewGameClick = this.handleNewGameClick.bind(this);
+        this.toggleModal = this.toggleModal.bind(this);
+        this.state = {
+            modal: false
+        }
     }
 
     render() {
@@ -22,6 +26,10 @@ class Board extends Component {
                 <Link to="/">
                     <button className="board__button">NEW GAME</button>
                 </Link>
+                <button onClick={this.toggleModal}>OPEN MODAL</button>
+                <Modal show={this.state.modal} onCloseClick={this.toggleModal}>
+                    <span className="board__message">MODAL CONTENT</span>
+                </Modal>
             </div>
         )
     }
@@ -33,7 +41,12 @@ class Board extends Component {
         return null;
     }
 
-    handleNewGameClick() {}
+    toggleModal() {
+        this.setState(state => ({
+            ...state,
+            modal: !state.modal
+        }))
+    }
 }
 
 const mapStateToProps = (state) => {
