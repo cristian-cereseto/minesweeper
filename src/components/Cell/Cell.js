@@ -5,7 +5,7 @@ import { openCell, flagCell } from '../../redux/actions/BoardActions';
 
 import './Cell.scss';
 
-class Cell extends Component {
+export class Cell extends Component {
     constructor(props) {
         super(props);
         this.handleClick = this.handleClick.bind(this);
@@ -13,7 +13,10 @@ class Cell extends Component {
 
     render() {
         return (
-            <div className={this.getClassName()} onClick={this.handleClick} onContextMenu={this.handleClick}>
+            <div className={this.getClassName()}
+                 onClick={this.handleClick}
+                 onContextMenu={this.handleClick}
+                 aria-label={`cell ${this.props.x} ${this.props.y}`}>
                 {this.renderContent()}
             </div>
         )
