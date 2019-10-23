@@ -1,5 +1,5 @@
 # Cristian Cereseto - React js Mine Sweeper
-This project is a simple mine sweeper game built to demonstrate Front-end habilities and tought process.
+This project is a simple mine sweeper game built to demonstrate Front-end habilities and tought process, basic implementation for unit tests is based on jest and react testing library.
 
 ## Description:
 Small game where the user selects height, width and amount of mines (or selects between 3 different default difficulty levels) before being sent to a classic mine sweeper game.
@@ -13,6 +13,8 @@ Once the game ends a modal will show a message with the game result and the chan
 * Redux
 * Redux persist
 * Sass based styles (all classes follow B.E.M. conventions)
+* Jest
+* React testing library
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
